@@ -10,7 +10,7 @@
 AsciiArtMainWindow::AsciiArtMainWindow(QWidget *parent) :
         QWidget(parent),
         selected_image_file_(new QString),
-        art_generator_(){
+        art_generator_(){;
 
     createLeftGroupBox();
     createCentralGroupBox();

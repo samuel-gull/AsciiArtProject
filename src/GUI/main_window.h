@@ -16,7 +16,9 @@
 
 #include "ascii_art_generator.h"
 
+
 class AsciiArtMainWindow : public QWidget {
+
 Q_OBJECT
 
 public:
@@ -36,6 +38,7 @@ private slots:
     void createAsciiArt();
 
 private:
+
     QGroupBox* left_group_box_;
     QGroupBox* central_group_box_;
     QGroupBox* right_group_box_;
