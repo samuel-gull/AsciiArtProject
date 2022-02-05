@@ -13,7 +13,7 @@ find_package(Qt5 COMPONENTS
         REQUIRED)
 
 
-add_executable(main main.cpp main_window.cpp sth.cpp sth.h sth.ui)
+add_executable(main main.cpp main_window.cpp)
 target_include_directories(main PUBLIC ${PROJECT_SOURCE_DIR}/ascii_art)
 target_link_libraries(main ascii_art Qt5::Core
         Qt5::Gui

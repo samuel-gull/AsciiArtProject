@@ -9,10 +9,17 @@
 #include <opencv2/core/core.hpp>
 
 #include "common_types.h"
+#include "patch.h"
+#include "feature.h"
+#include "basis_image.h"
 
 class FeatureExtractorBase{
 public:
-    void extract(const cv::Mat& img, BaseFeature* feature){};
+    virtual void extract(const cv::Mat& img, BaseFeature* feature) = 0;
+    virtual void extract(const cv::Mat& img, std::shared_ptr<BaseFeature>& feature) = 0;
+
+    virtual std::shared_ptr<BaseFeature> computeFeature(const cv::Mat& img) = 0;
+
 
 };
 

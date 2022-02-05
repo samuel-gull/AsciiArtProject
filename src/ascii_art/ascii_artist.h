@@ -5,31 +5,33 @@
 #ifndef ASCIIARTPROJECT_ASCII_ARTIST_H
 #define ASCIIARTPROJECT_ASCII_ARTIST_H
 
+#include <opencv2/highgui/highgui.hpp>
+
 #include "artist_base.h"
 
 class AsciiArtist : public ArtistBase {
 
 public:
-    struct Config{
-
-    };
+    AsciiArtist();
 
     void loadModelImage(const std::string& model_image_path) override;
 
-//    void extractBasisFeatures() override;
+    void createBasisImages() override;
+    void createEmptyResultingImage() override;
 
-    void createBaseImages() override;
-    void findClosestBaseImage() override;
-    void applyDefaultConfig() override;
+    void applyTransform() override;
+
+    int getMaxCharacterHeight();
+    int getMaxCharacterWidth();
+    void createBaseCharacters();
+
+    void remapIntensityFeatures();
 
 private:
 
-    Config config_;
-    Config default_config_backup_;
-
     std::vector<BaseSymbol> base_characters_;
-
-
+    cv::HersheyFonts font_type_ = cv::FONT_HERSHEY_TRIPLEX;
+    float base_fill_ratio_ = 1;
 };
 
 

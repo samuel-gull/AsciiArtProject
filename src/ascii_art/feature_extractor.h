@@ -12,12 +12,13 @@
 #include "common_types.h"
 #include "feature_extractor_base.h"
 
-
-
 class FeatureExtractorIntensity : public FeatureExtractorBase {
 
 public:
-    static void extract(const cv::Mat &img, IntensityFeature* feature);
+    void extract(const cv::Mat &img, BaseFeature* feature) override;
+    void extract(const cv::Mat &img, std::shared_ptr<BaseFeature>& feature) override;
+
+    std::shared_ptr<BaseFeature>  computeFeature(const cv::Mat& img) override;
 
 };
 

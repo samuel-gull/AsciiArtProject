@@ -5,12 +5,13 @@
 #include "feature_extractor_factory.h"
 #include "feature_extractor.h"
 
+
 std::shared_ptr<FeatureExtractorBase> FeatureExtractorFactory::createFeatureExtractor(
         FeatureExtractorType extractor_type) {
 
     switch (extractor_type) {
         case INTENSITY:
-            return std::make_shared<FeatureExtractorIntensity>();
+            return std::shared_ptr<FeatureExtractorBase>(new FeatureExtractorIntensity());
         default:
             return std::make_shared<FeatureExtractorIntensity>();
     }

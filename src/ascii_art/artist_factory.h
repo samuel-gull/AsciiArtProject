@@ -12,8 +12,6 @@ class ArtistFactory{
 
 public:
     static std::shared_ptr<ArtistBase> createArtist(ArtistType artist_type);
-//    auto createArtist(ArtistType artist_type);
-
 };
 
 #endif //ASCIIARTPROJECT_ARTIST_FACTORY_H

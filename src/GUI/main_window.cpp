@@ -9,14 +9,16 @@
 
 AsciiArtMainWindow::AsciiArtMainWindow(QWidget *parent) :
         QWidget(parent),
+//        selected_image_file_(new QString){
         selected_image_file_(new QString),
-        art_generator_(){;
+        artist_(ArtistFactory::createArtist(ASCII)){
 
     createLeftGroupBox();
     createCentralGroupBox();
     createRightGroupBox();
 
     setupMainLayout();
+
 }
 
 
@@ -105,17 +107,37 @@ void AsciiArtMainWindow::selectImage() {
 }
 
 void AsciiArtMainWindow::createAsciiArt() {
-
+//
+//    if(selected_image_file_){
+//        art_generator_.loadTargetImage(selected_image_file_->toStdString());
+//        art_generator_.createModelImagePatches();
+//        art_generator_.createBaseCharacters();
+//        art_generator_.createBaseImages();
+//        art_generator_.remapIntensitiesOfBaseImages();
+//        art_generator_.createEmptyResultingImage();
+//        art_generator_.fillResultingImage();
+//        std::cout << " art created" << std::endl;
+//        cv::Mat art_mat = art_generator_.getResultingImage();
+//        std::cout << " art loaded" << std::endl;
+//        *art_image_ = QImage( art_mat.data,
+//               art_mat.cols,
+//               art_mat.rows,
+//               art_mat.step,
+//               QImage::Format_Grayscale8);
+//        std::cout << art_image_->format() << std::endl;
+//        std::cout << art_image_->width() << " "<< art_image_->height() << std::endl;
+//
+//        *art_image_pixmap_ = QPixmap::fromImage(*art_image_);
+//        *art_image_pixmap_ = art_image_pixmap_->scaled(art_image_label_->size(),Qt::KeepAspectRatio, Qt::SmoothTransformation);
+//        std::cout << " pixmap created" << std::endl;
+//        art_image_label_->setPixmap(*art_image_pixmap_);
+//
+//    }
     if(selected_image_file_){
-        art_generator_.loadTargetImage(selected_image_file_->toStdString());
-        art_generator_.createModelImagePatches();
-        art_generator_.createBaseCharacters();
-        art_generator_.createBaseImages();
-        art_generator_.remapIntensitiesOfBaseImages();
-        art_generator_.createEmptyResultingImage();
-        art_generator_.fillResultingImage();
+        artist_->loadModelImage(selected_image_file_->toStdString());
+        artist_->applyTransform();
         std::cout << " art created" << std::endl;
-        cv::Mat art_mat = art_generator_.getResultingImage();
+        cv::Mat art_mat = artist_->getResultingImage();
         std::cout << " art loaded" << std::endl;
         *art_image_ = QImage( art_mat.data,
                art_mat.cols,
@@ -131,6 +153,7 @@ void AsciiArtMainWindow::createAsciiArt() {
         art_image_label_->setPixmap(*art_image_pixmap_);
 
     }
+
 
 }
 

@@ -6,9 +6,9 @@
 
 
 void RectangularGridTiler::createPatches(const cv::Mat& img,
-                                         std::deque<PatchBase>* patches) {
+                                         std::vector<std::shared_ptr<PatchBase>>& patches) {
 
-    patches->clear();
+    patches.clear();
 
     auto patch_width = RectangularImagePatch::patch_size.width;
     auto patch_height = RectangularImagePatch::patch_size.height;
@@ -23,7 +23,7 @@ void RectangularGridTiler::createPatches(const cv::Mat& img,
             patch.y_coord = j*patch_height;
             patch.image = img(cv::Rect(patch.x_coord,patch.y_coord,
                                        patch_width, patch_height));
-            patches->push_back(patch);
+            patches.push_back(std::make_shared<RectangularImagePatch>(patch));
         }
     }
 }

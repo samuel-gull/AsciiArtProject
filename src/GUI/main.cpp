@@ -2,6 +2,7 @@
 #include <QPushButton>
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QWidget>
 
 #include "main_window.h"
 

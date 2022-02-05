@@ -15,6 +15,9 @@
 #include <QVBoxLayout>
 
 #include "ascii_art_generator.h"
+#include "artist_base.h"
+#include "artist_factory.h"
+#include "ascii_artist.h"
 
 
 class AsciiArtMainWindow : public QWidget {
@@ -57,7 +60,8 @@ private:
 
     QString* selected_image_file_;
 
-    AsciiArtGenerator art_generator_;
+    std::shared_ptr<ArtistBase> artist_;
+
 };
 
 

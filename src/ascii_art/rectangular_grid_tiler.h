@@ -15,18 +15,9 @@ class RectangularGridTiler : public ImageTilerBase{
 public:
 
     void createPatches(const cv::Mat& img,
-                       std::deque<PatchBase>* patches) override;
+                       std::vector<std::shared_ptr<PatchBase>>& patches) override;
 
 };
-
-//class RectangularGridTiler : public ImageTilerBase<RectangularImagePatch>{
-//
-//public:
-//
-//     void createPatches(const cv::Mat& img,
-//                        std::vector<RectangularImagePatch>& patches) override;
-//
-//};
 
 
 #endif //ASCIIARTPROJECT_RECTANGULAR_GRID_TILER_H
